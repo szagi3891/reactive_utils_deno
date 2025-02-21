@@ -1,0 +1,6 @@
+{
+    "version": "0.0.2",
+    "name": "@reactive/utils-deno",
+    "exports": "./index.ts",
+    "license": "MIT"
+}

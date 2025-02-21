@@ -1,0 +1,33 @@
+{
+    "version": "0.0.2",
+    "name": "@reactive/utils-deno",
+    "exports": {
+        ".": "./index.ts"
+    },
+    "license": "MIT",
+    "lint": {
+        "rules": {
+            "exclude": [
+                "verbatim-module-syntax",
+                "no-namespace"
+            ]
+        }
+    },
+    "imports": {
+        "@reactive/utils": "jsr:@reactive/utils@^0.5.194",
+        "zod": "npm:zod@^*"
+    },
+    "tasks": {
+        "test": "deno test"
+    },
+    "compilerOptions": {
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "lib": [
+            "deno.window",
+            "dom",
+            "es6",
+            "esnext"
+        ]
+    }
+}
