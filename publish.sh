@@ -1,7 +1,7 @@
 set -e
 
 #npm run ts-check
-deno check ./index.ts
+# deno check ./index.ts
 
 #npm run test
 deno run test

@@ -10,25 +10,32 @@ const throwNever = (): never => {
     throw Error('Never ...');
 };
 
-//TODO - przenieść ten kod jako biblioteka do src i użyć również w reactive/utils ?
+const getVersion = async (): Promise<string> => {
+    const contentDenoJson = ContentZod.parse(JSON.parse((await fs.promises.readFile('./deno.json')).toString()));
+    return contentDenoJson.version;
+};
 
-const main = async (): Promise<void> => {
-
-    const content = ContentZod.parse(JSON.parse((await fs.promises.readFile('./jsr.json')).toString()));
-
-    const version = content.version;
-
-    console.info(version);
-
+const incrementVersion = (version: string): string => {
     const chunks = version.split('.');
     const last = chunks[chunks.length - 1] ?? throwNever();
     const lastNumber = parseInt(last, 10) + 1;
     chunks[chunks.length - 1] = lastNumber.toString();
 
     const nextVersion = chunks.join('.');
-    content.version = nextVersion;
+    return nextVersion;
+};
 
-    await fs.promises.writeFile('./jsr.json', JSON.stringify(content, null, 4));
+//TODO - przenieść ten kod jako biblioteka do src i użyć również w reactive/utils ?
+
+const main = async (): Promise<void> => {
+
+    // const content = ContentZod.parse(JSON.parse((await fs.promises.readFile('./jsr.json')).toString()));
+
+    // const version = content.version;
+
+    const version = await getVersion();
+    
+    const nextVersion = incrementVersion(version);
 
     console.info(`git add . && git commit -am "version ${nextVersion}" && npx jsr publish && git push origin main:main`);
 
