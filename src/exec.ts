@@ -52,6 +52,8 @@ export async function execAndGet(
     commandStr: string,
     env?: Record<string, string>,
   ): Promise<string> {
+    console.info(`%cexec ${cwd} ${commandStr}`, 'color:green');
+
     const args = commandStr.split(' ');
 
     const commandParam: string = args.shift() ?? throwError('expected command');
