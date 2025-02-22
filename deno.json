@@ -1,9 +1,10 @@
 {
-    "version": "0.0.10",
+    "version": "0.0.11",
     "name": "@reactive/utils-deno",
     "exports": {
         "./exec": "./src/exec.ts",
-        "./git": "./src/git.ts"
+        "./git": "./src/git.ts",
+        "./dir": "./src/dir.ts"
     },
     "license": "MIT",
     "lint": {
